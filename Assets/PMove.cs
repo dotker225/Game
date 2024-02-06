@@ -5,7 +5,7 @@ public class PMove : MonoBehaviour
     [Header("Передвижение")]
     [SerializeField] private Vector2 _direction;
     [SerializeField] private float _speed;
-    [SerializeField] private bool _isLookToRight = true;
+    //[SerializeField] private bool _isLookToRight = true;
     private Rigidbody2D _rb2d;
     private float _directionX;
     private void Start()
@@ -15,8 +15,18 @@ public class PMove : MonoBehaviour
     private void Update()
     {
         //transform.Translate(_direction * Time.deltaTime);
-        transform.localScale = new Vector2(_directionX,1);
-
+        //transform.localScale = new Vector2(_directionX,1);
+        if (Input.GetAxis("Horizontal") > 0) 
+        { 
+            Quaternion r = transform.rotation;
+            r.y = 0; 
+            transform.rotation = r; 
+        } else if (Input.GetAxis("Horizontal") < 0) 
+        { 
+            Quaternion r = transform.rotation; 
+            r.y = 180; 
+            transform.rotation = r; 
+        }
     }
 
     private void FixedUpdate()
