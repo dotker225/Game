@@ -10,9 +10,16 @@ public class PMove : MonoBehaviour
     private Animator _animator;
     private float _directionX;
     private float _directionY;
-    private int _xScale = 1;
+    private float _xScale = 1;
+    private float _xScaleStart;
+    private float _yScaleStart;
+
+
     private void Start()
     {
+        _xScaleStart = transform.localScale.x;
+        _yScaleStart = transform.localScale.y;
+        _xScale = _xScaleStart;
         _rb2d = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -22,13 +29,13 @@ public class PMove : MonoBehaviour
         _animator.SetBool("IsRun", _directionX != 0 || _directionY != 0);
         if (_directionX > 0)
         {
-            _xScale = 1;
+            _xScale = _xScaleStart;
         }
         else if (_directionX < 0)
         {
-            _xScale = -1;
+            _xScale = -_xScaleStart;
         }
-        transform.localScale = new Vector3(_xScale, 1, 1);
+        transform.localScale = new Vector3(_xScale, _yScaleStart, 1);
 
 
     }
