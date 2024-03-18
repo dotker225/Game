@@ -39,9 +39,9 @@ public class PMove : MonoBehaviour
     {
         //transform.Translate(_direction);
         _directionX = Input.GetAxis("Horizontal");
-        var directionY = Input.GetAxis("Vertical");
+        _directionY = Input.GetAxis("Vertical");
         //Debug.Log(directionX);
-        _direction = new Vector2(_directionX, directionY);
+        _direction = new Vector2(_directionX, _directionY);
         //_rb2d.AddForce(direction * _speed);
         _rb2d.velocity = _direction * _speed;
     }
